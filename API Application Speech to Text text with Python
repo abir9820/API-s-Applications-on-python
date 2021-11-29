@@ -1,0 +1,16 @@
+import speech_recognition as sr
+#get the audio from Microphone
+r=sr.Recognizer()
+with sr.Microphone() as source:
+    print("Speak")
+    audio=r.listen(source)
+#try to use google speech recognition API to Convert audio to text
+#Catch and report Errors if applicable
+try:
+    txt=r.recognize_google(audio)
+    print("I Said:",txt)
+except sr.UnknownValueError:
+    print("Could not understand audio")
+except sr.RequestError as e:
+    print("could not request results; {0}",format(e))
+    
